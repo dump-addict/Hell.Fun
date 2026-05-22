@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
+@theme {
+  /* Couleurs Hell.fun */
+  --color-bg: #1B1B24;
+  --color-section: #13131A;
+  --color-section-shadow: #0D0D14;
+  --color-orange: #FF4617;
+  --color-orange-soft: #C73912;
+  --color-yellow-glow: rgba(255, 229, 47, 0.5);
+
+  --color-text: #FFFFFF;
+  --color-muted: #8A8A95;
+  --color-muted-2: #A0A0AC;
+
+  /* Font */
+  --font-sans: var(--font-manrope), "Manrope", system-ui, sans-serif;
+
+  /* Radius */
+  --radius-card: 16px;
+  --radius-btn: 10px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1B1B24;
+  --foreground: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
+html, body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
+/* Curseur pointer global sur tous les éléments cliquables */
+button:not(:disabled),
+a,
+[role="button"]:not(:disabled),
+[role="link"] {
+  cursor: pointer;
+}
+
+/* Effet "saillant" : highlight jaune en haut du bouton */
+.shadow-glow {
+  box-shadow: inset 0px 4px 4px rgba(255, 229, 47, 0.5);
+}
+
+/* Effet "creusé" : ombre foncée en haut de la section */
+.shadow-inset {
+  box-shadow: inset 0px 4px 4px #0D0D14;
+}
+
+/* Scrollbar custom (subtile, raccord avec le thème) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A35;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3A3A48;
+}
+
+/* Masquer la scrollbar pour le carousel */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
