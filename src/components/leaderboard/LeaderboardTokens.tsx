@@ -9,20 +9,12 @@ export function LeaderboardTokens({ tokens }: { tokens: Token[] }) {
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider">
-        <div>Rank</div>
-        <div>Token</div>
-        <div className="text-center">Market Cap</div>
-        <div className="text-center">Volume 24h</div>
-        <div className="text-center">Holders</div>
-        <div className="text-center">24h</div>
-      </div>
       <div className="divide-y divide-[#0D0D14]">
         {ranked.map((t, i) => (
           <Link
             key={t.id}
             href={`/token/${t.id}`}
-            className="grid grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors"
+            className="grid grid-cols-[40px_1.5fr_1fr_1fr] gap-3 lg:grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] lg:gap-0 items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors"
           >
             <div>
               <RankBadge rank={i + 1} />
@@ -46,10 +38,10 @@ export function LeaderboardTokens({ tokens }: { tokens: Token[] }) {
             <div className="text-center text-white font-bold">
               {formatNumber(t.marketCap, { compact: true })}
             </div>
-            <div className="text-center text-white font-bold">
+            <div className="hidden lg:block text-center text-white font-bold">
               {formatNumber(t.volume24h, { compact: true })}
             </div>
-            <div className="text-center text-white font-bold">
+            <div className="hidden lg:block text-center text-white font-bold">
               {t.holders.toLocaleString("en-US")}
             </div>
             <div className="text-center text-orange font-bold">

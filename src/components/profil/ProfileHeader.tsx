@@ -25,25 +25,65 @@ export function ProfileHeader({ username, address, bio, socials, joinedAt }: Pro
   const avatarUrl = flamePlaceholder(`profile-${address}`);
   const bannerUrl = flamePlaceholder(`banner-${address}`, { wide: true });
 
+  const actionButtons = (
+    <>
+      {socials.twitter && (
+        <SocialBtn href={socials.twitter} label="X">
+          <XIcon className="h-4 w-4" />
+        </SocialBtn>
+      )}
+      {socials.telegram && (
+        <SocialBtn href={socials.telegram} label="Telegram">
+          <Send className="h-4 w-4" strokeWidth={2} />
+        </SocialBtn>
+      )}
+      {socials.website && (
+        <SocialBtn href={socials.website} label="Website">
+          <Globe className="h-4 w-4" strokeWidth={2} />
+        </SocialBtn>
+      )}
+      <button
+        type="button"
+        className="h-10 px-4 inline-flex items-center gap-2 rounded-[10px] bg-orange shadow-glow text-white font-bold text-[13px] hover:brightness-110 active:scale-[0.99] transition-all"
+      >
+        <Pencil className="h-3.5 w-3.5" strokeWidth={2.5} />
+        Edit
+      </button>
+    </>
+  );
+
   return (
-    <section className="bg-section shadow-inset rounded-[16px] overflow-hidden">
+    <section className="bg-section shadow-inset rounded-[16px] overflow-hidden relative">
       {/* Banner */}
       <div className="relative aspect-[6/1] bg-[#0D0D14]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={bannerUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
       </div>
 
-      {/* Dark zone : avatar (bas-gauche overlap moitié-moitié) | infos | actions (centrées vertical) */}
-      <div className="px-[15px] pb-[15px] flex items-center gap-4">
-        {/* Avatar — bas-gauche, moitié banner / moitié dark, premier plan */}
+      {/* Actions MOBILE : absolute top-right par-dessus le banner */}
+      <div className="absolute top-[15px] right-[15px] z-20 flex items-center gap-2 lg:hidden">
+        {actionButtons}
+      </div>
+
+      {/* Avatar MOBILE : absolute top-left (15px padding, touche le haut, par-dessus le banner) */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={avatarUrl}
+        alt={username}
+        className="lg:hidden absolute top-[15px] left-[15px] z-10 h-20 w-20 rounded-[14px] object-cover bg-[#0D0D14] shadow-inset"
+      />
+
+      {/* Dark zone : mobile a un pt-[35px] pour laisser place à l'avatar absolu ; desktop garde 0 */}
+      <div className="px-[15px] pb-[15px] pt-[35px] lg:pt-0 flex items-center gap-4 flex-wrap">
+        {/* Avatar DESKTOP : bas-gauche overlap moitié-moitié */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={avatarUrl}
           alt={username}
-          className="self-start relative z-10 h-32 w-32 rounded-[16px] object-cover bg-[#0D0D14] shadow-inset shrink-0 -mt-16 ring-4 ring-section"
+          className="hidden lg:block self-start relative z-10 h-32 w-32 rounded-[16px] object-cover bg-[#0D0D14] shadow-inset shrink-0 -mt-16 ring-4 ring-section"
         />
 
-        {/* Identity (droite de l'avatar) */}
+        {/* Identity */}
         <div className="self-start flex-1 min-w-0 flex flex-col gap-2 pt-[15px]">
           <div className="flex items-baseline gap-3 flex-wrap">
             <h2 className="text-xl font-extrabold text-white leading-none">{username}</h2>
@@ -60,33 +100,12 @@ export function ProfileHeader({ username, address, bio, socials, joinedAt }: Pro
               · Joined {joinedAt.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
             </span>
           </div>
-          <p className="text-sm text-white leading-snug">{bio}</p>
+          <p className="text-sm text-white leading-snug line-clamp-2 lg:line-clamp-none">{bio}</p>
         </div>
 
-        {/* Actions (extrême droite — centrées verticalement par items-center du parent) */}
-        <div className="flex items-center gap-2 shrink-0">
-          {socials.twitter && (
-            <SocialBtn href={socials.twitter} label="X">
-              <XIcon className="h-4 w-4" />
-            </SocialBtn>
-          )}
-          {socials.telegram && (
-            <SocialBtn href={socials.telegram} label="Telegram">
-              <Send className="h-4 w-4" strokeWidth={2} />
-            </SocialBtn>
-          )}
-          {socials.website && (
-            <SocialBtn href={socials.website} label="Website">
-              <Globe className="h-4 w-4" strokeWidth={2} />
-            </SocialBtn>
-          )}
-          <button
-            type="button"
-            className="h-10 px-4 inline-flex items-center gap-2 rounded-[10px] bg-orange shadow-glow text-white font-bold text-[13px] hover:brightness-110 active:scale-[0.99] transition-all"
-          >
-            <Pencil className="h-3.5 w-3.5" strokeWidth={2.5} />
-            Edit
-          </button>
+        {/* Actions DESKTOP : extrême droite, dans la dark zone */}
+        <div className="hidden lg:flex self-end items-center gap-2 shrink-0">
+          {actionButtons}
         </div>
       </div>
     </section>

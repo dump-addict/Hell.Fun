@@ -13,7 +13,7 @@ export function RankBadge({ rank }: { rank: number }) {
   return (
     <span
       className={cn(
-        "h-8 w-8 flex items-center justify-center rounded-[8px] text-xs font-extrabold shrink-0",
+        "h-10 w-10 flex items-center justify-center rounded-[8px] text-xs font-extrabold shrink-0",
         isTop3 && "bg-orange shadow-glow text-white",
         !isTop3 && isTop10 && "bg-orange-soft text-white",
         !isTop10 && "bg-[#0D0D14] shadow-inset text-muted-2",

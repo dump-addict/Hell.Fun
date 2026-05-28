@@ -74,7 +74,7 @@ export function PortfolioChart() {
 
   return (
     <section className="bg-section shadow-inset rounded-[16px] p-4 flex flex-col gap-3 h-[340px]">
-      <header className="flex items-center justify-between">
+      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <span className="text-xs font-bold text-muted uppercase tracking-wider">
             Portfolio Performance
@@ -84,7 +84,7 @@ export function PortfolioChart() {
             <span className="text-sm font-bold text-orange">+$1,247.83 (+10.74%)</span>
           </div>
         </div>
-        <div className="flex bg-[#0D0D14] shadow-inset rounded-[10px] p-[3px]">
+        <div className="self-start sm:self-auto flex bg-[#0D0D14] shadow-inset rounded-[10px] p-[3px]">
           {RANGES.map((r) => (
             <button
               key={r}

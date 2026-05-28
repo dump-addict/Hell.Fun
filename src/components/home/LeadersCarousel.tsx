@@ -72,8 +72,8 @@ export function LeadersCarousel({ leaders }: LeadersCarouselProps) {
 
 function LeaderCard({ leader }: { leader: Leader }) {
   return (
-    <div className="relative shrink-0 basis-[31%] pl-[15px]">
-      <div className="relative aspect-[7/3] rounded-[16px] overflow-hidden bg-section">
+    <div className="relative shrink-0 basis-[90%] sm:basis-[60%] md:basis-[45%] lg:basis-[31%] pl-[15px]">
+      <div className="relative aspect-[16/9] sm:aspect-[7/3] rounded-[16px] overflow-hidden bg-section">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={leader.heroImageUrl}

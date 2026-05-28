@@ -57,19 +57,11 @@ export function LeaderboardTraders() {
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider">
-        <div>Rank</div>
-        <div>Trader</div>
-        <div className="text-center">P&L</div>
-        <div className="text-center">Win Rate</div>
-        <div className="text-center">Trades</div>
-        <div className="text-center">Volume</div>
-      </div>
       <div className="divide-y divide-[#0D0D14]">
         {traders.map((t, i) => (
           <div
             key={t.id}
-            className="grid grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors cursor-pointer"
+            className="grid grid-cols-[40px_1.5fr_1fr_1fr] gap-3 lg:grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] lg:gap-0 items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors cursor-pointer"
           >
             <div>
               <RankBadge rank={i + 1} />
@@ -94,8 +86,8 @@ export function LeaderboardTraders() {
               {t.pnlUsd >= 0 ? "+" : "-"}
               {formatNumber(Math.abs(t.pnlUsd), { compact: true })}
             </div>
-            <div className="text-center text-white font-bold">{t.winRate.toFixed(1)}%</div>
-            <div className="text-center text-white font-bold">
+            <div className="hidden lg:block text-center text-white font-bold">{t.winRate.toFixed(1)}%</div>
+            <div className="hidden lg:block text-center text-white font-bold">
               {t.trades.toLocaleString("en-US")}
             </div>
             <div className="text-center text-white font-bold">

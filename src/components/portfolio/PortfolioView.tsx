@@ -31,7 +31,7 @@ export function PortfolioView({ tokens }: PortfolioViewProps) {
   const created: Token[] = tokens.slice(5, 7);
 
   return (
-    <div className="flex flex-col gap-[15px] h-[calc(100vh-85px)]">
+    <div className="flex flex-col gap-[15px] lg:h-[calc(100vh-85px)]">
       {/* Titre */}
       <div>
         <h1 className="text-lg font-extrabold text-white leading-none">Portfolio</h1>
@@ -46,20 +46,21 @@ export function PortfolioView({ tokens }: PortfolioViewProps) {
       {/* Chart */}
       <PortfolioChart />
 
-      {/* Tabs — flex-1 pour remplir l'espace restant, scroll interne */}
-      <section className="bg-section shadow-inset rounded-[16px] p-4 flex flex-col gap-4 flex-1 min-h-0">
-        <SegmentedControl<Tab>
-          segments={[
-            { value: "holdings", label: "Holdings", width: "33.33%" },
-            { value: "created", label: "Created", width: "33.33%" },
-            { value: "trades", label: "Trades", width: "33.33%" },
-          ]}
-          value={tab}
-          onChange={setTab}
-          className="w-[300px]"
-        />
+      {/* Tabs SORTIS de la section */}
+      <SegmentedControl<Tab>
+        segments={[
+          { value: "holdings", label: "Holdings", width: "33.33%" },
+          { value: "created", label: "Created", width: "33.33%" },
+          { value: "trades", label: "Trades", width: "33.33%" },
+        ]}
+        value={tab}
+        onChange={setTab}
+        className="w-full sm:w-[300px]"
+      />
 
-        <div className="flex-1 overflow-y-auto no-scrollbar min-h-0">
+      {/* Section principale : contenu seul */}
+      <section className="bg-section shadow-inset rounded-[16px] p-4 lg:flex-1 lg:min-h-0">
+        <div className="lg:h-full lg:overflow-y-auto no-scrollbar">
           {tab === "holdings" && <PortfolioHoldings holdings={holdings} />}
           {tab === "created" && <PortfolioCreated tokens={created} />}
           {tab === "trades" && <PortfolioTrades />}

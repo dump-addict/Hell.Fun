@@ -28,7 +28,7 @@ const HEADERS = [
 
 export function TokenTable({ tokens }: TokenTableProps) {
   return (
-    <div className="bg-section shadow-inset rounded-[16px] p-1.5">
+    <div className="bg-section shadow-inset rounded-[16px] p-1.5 overflow-x-auto no-scrollbar [&>*]:min-w-[1100px]">
       {/* Header */}
       <div
         className="bg-orange shadow-glow rounded-[12px] h-11 grid items-center px-4 gap-6 text-white text-xs font-extrabold"

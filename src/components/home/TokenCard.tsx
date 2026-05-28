@@ -1,17 +1,19 @@
 import { Clock, Users, Globe, Send, Reply } from "lucide-react";
 import Link from "next/link";
 import type { Token } from "@/lib/types";
-import { formatNumber, shortenAddress, timeAgo } from "@/lib/utils";
+import { cn, formatNumber, shortenAddress, timeAgo } from "@/lib/utils";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 
 interface TokenCardProps {
   token: Token;
+  /** Override le background (utile quand la card est dans une section déjà bg-section) */
+  className?: string;
 }
 
-export function TokenCard({ token }: TokenCardProps) {
+export function TokenCard({ token, className }: TokenCardProps) {
   return (
     <Link href={`/token/${token.id}`} className="block">
-    <article className="bg-section shadow-inset rounded-[16px] p-4 flex flex-col gap-3 hover:ring-1 hover:ring-orange/40 transition-all">
+    <article className={cn("bg-section shadow-inset rounded-[16px] p-4 flex flex-col gap-3 hover:ring-1 hover:ring-orange/40 transition-all", className)}>
       {/* Header : avatar + info + socials. Le bloc texte fait pile la hauteur de l'avatar. */}
       <header className="flex gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}

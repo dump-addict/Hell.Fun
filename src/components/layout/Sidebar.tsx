@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Wallet, Crown, ArrowLeftRight, User, Send, Headphones } from "lucide-react";
+import { Home, Wallet, Crown, ArrowLeftRight, User, Send, Headphones, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -14,14 +14,37 @@ const NAV: { href: string; label: string; icon: typeof Home }[] = [
   { href: "/profil", label: "Profil", icon: User },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  mobileOpen?: boolean;
+  onMobileClose?: () => void;
+}
+
+export function Sidebar({ mobileOpen = false, onMobileClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col gap-[15px] w-[202px] shrink-0 h-[calc(100vh-30px)] sticky top-[15px]">
-      {/* Card 1 : Logo seul */}
-      <div className="bg-section shadow-inset rounded-[16px] p-2.5">
+    <aside
+      className={cn(
+        "flex flex-col gap-[15px] w-[202px] shrink-0",
+        // Desktop : sticky standard
+        "lg:sticky lg:top-[15px] lg:h-[calc(100vh-30px)]",
+        // Mobile : fixed drawer
+        "max-lg:fixed max-lg:inset-y-[15px] max-lg:left-[15px] max-lg:z-50",
+        "max-lg:transition-transform max-lg:duration-300 max-lg:ease-out",
+        !mobileOpen && "max-lg:-translate-x-[calc(100%+30px)]",
+      )}
+    >
+      {/* Card 1 : Logo + close button (mobile) */}
+      <div className="bg-section shadow-inset rounded-[16px] p-2.5 flex items-center justify-between gap-2">
         <Logo />
+        <button
+          type="button"
+          onClick={onMobileClose}
+          aria-label="Close menu"
+          className="lg:hidden h-9 w-9 flex items-center justify-center rounded-[8px] bg-[#0D0D14] shadow-inset text-white hover:text-orange transition-colors shrink-0"
+        >
+          <X className="h-4 w-4" strokeWidth={2.5} />
+        </button>
       </div>
 
       {/* Card 2 : Nav items */}
@@ -33,6 +56,7 @@ export function Sidebar() {
               <Link
                 key={href}
                 href={href}
+                onClick={onMobileClose}
                 className={cn(
                   "flex items-center gap-2.5 h-10 px-3 rounded-[10px] text-sm font-bold transition-colors text-left",
                   isActive
@@ -48,7 +72,7 @@ export function Sidebar() {
         </nav>
       </div>
 
-      {/* Socials row — 4 carrés 43x43, gap 10px (50% plus petit que 15px global) */}
+      {/* Socials row — 4 carrés 43x43, gap 10px */}
       <div className="flex items-center gap-[10px]">
         <SocialBtn ariaLabel="X (Twitter)">
           <XIcon className="h-4 w-4" />
@@ -67,6 +91,7 @@ export function Sidebar() {
       {/* CTA Create Token */}
       <Link
         href="/create"
+        onClick={onMobileClose}
         className="h-11 w-full inline-flex items-center justify-center rounded-[10px] bg-orange shadow-glow text-white font-bold text-[13px] hover:brightness-110 active:scale-[0.99] transition-all"
       >
         Create Token

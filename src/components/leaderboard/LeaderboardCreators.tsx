@@ -58,19 +58,11 @@ export function LeaderboardCreators() {
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider">
-        <div>Rank</div>
-        <div>Creator</div>
-        <div className="text-center">Tokens</div>
-        <div className="text-center">Total MCap</div>
-        <div className="text-center">Avg Perf</div>
-        <div className="text-center">Best</div>
-      </div>
       <div className="divide-y divide-[#0D0D14]">
         {creators.map((c, i) => (
           <div
             key={c.id}
-            className="grid grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors cursor-pointer"
+            className="grid grid-cols-[40px_1.5fr_1fr_1fr] gap-3 lg:grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] lg:gap-0 items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors cursor-pointer"
           >
             <div>
               <RankBadge rank={i + 1} />
@@ -90,10 +82,10 @@ export function LeaderboardCreators() {
               </div>
             </div>
             <div className="text-center text-white font-bold">{c.tokensCreated}</div>
-            <div className="text-center text-white font-bold">
+            <div className="hidden lg:block text-center text-white font-bold">
               {formatNumber(c.totalMarketCap, { compact: true })}
             </div>
-            <div className="text-center text-orange font-bold">
+            <div className="hidden lg:block text-center text-orange font-bold">
               {c.avgPerformance >= 0 ? "+" : ""}
               {c.avgPerformance.toFixed(0)}%
             </div>

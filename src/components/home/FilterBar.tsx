@@ -36,7 +36,7 @@ export function FilterBar({
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <div className="flex items-center justify-between gap-[15px] flex-wrap">
+    <div className="flex items-center gap-[10px] lg:gap-[15px] lg:justify-between flex-wrap">
       {/* ZONE 1 : GAUCHE — Slider statut */}
       <SegmentedControl<StatusFilter>
         segments={[
@@ -48,8 +48,8 @@ export function FilterBar({
         className="w-[184px]"
       />
 
-      {/* ZONE 2 : MILIEU — Filtres */}
-      <div className="flex items-center gap-[10px] flex-wrap">
+      {/* ZONE 2 : MILIEU — Filtres (cachés sur mobile, visibles desktop) */}
+      <div className="hidden lg:flex items-center gap-[10px] flex-wrap">
         <button
           type="button"
           onClick={() => setDropdownOpen((v) => !v)}
@@ -92,7 +92,9 @@ export function FilterBar({
           <ListFilter className="h-3.5 w-3.5" strokeWidth={2.5} />
         </button>
 
-        <ViewToggle value={view} onChange={onViewChange} />
+        <div className="hidden lg:block">
+          <ViewToggle value={view} onChange={onViewChange} />
+        </div>
         <SettingsMenu />
       </div>
     </div>
