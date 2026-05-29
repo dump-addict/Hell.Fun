@@ -1,10 +1,11 @@
 "use client";
 
-import { ChevronDown, ListFilter } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { ViewToggle } from "@/components/ui/ViewToggle";
 import { SettingsMenu } from "@/components/home/SettingsMenu";
+import { FilterMenu } from "@/components/home/FilterMenu";
 import type { SortKey, StatusFilter, ViewMode } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -84,13 +85,7 @@ export function FilterBar({
 
       {/* ZONE 3 : DROITE — Filter + Vue */}
       <div className="flex items-center gap-[10px]">
-        <button
-          type="button"
-          className="h-10 px-3.5 inline-flex items-center gap-2 rounded-[10px] bg-section shadow-inset text-white text-xs font-bold hover:text-orange transition-colors"
-        >
-          Filter
-          <ListFilter className="h-3.5 w-3.5" strokeWidth={2.5} />
-        </button>
+        <FilterMenu />
 
         <div className="hidden lg:block">
           <ViewToggle value={view} onChange={onViewChange} />

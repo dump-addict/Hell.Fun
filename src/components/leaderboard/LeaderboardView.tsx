@@ -79,7 +79,7 @@ export function LeaderboardView({ tokens }: { tokens: Token[] }) {
       <section className="bg-section shadow-inset rounded-[16px] p-4 flex flex-col gap-4 lg:flex-1 lg:min-h-0">
         {/* Orange pill header — colonnes 4-5 cachées sur mobile */}
         <div className="bg-orange shadow-glow rounded-[12px] grid grid-cols-[40px_1.5fr_1fr_1fr] gap-3 lg:grid-cols-[60px_2fr_1fr_1fr_1fr_1fr] lg:gap-0 items-center px-4 h-11 text-xs font-extrabold text-white">
-          <div>{HEADERS[tab][0]}</div>
+          <div className="text-center">{HEADERS[tab][0]}</div>
           <div>{HEADERS[tab][1]}</div>
           <div className="text-center">{HEADERS[tab][2]}</div>
           <div className="hidden lg:block text-center">{HEADERS[tab][3]}</div>

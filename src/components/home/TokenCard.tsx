@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Token } from "@/lib/types";
 import { cn, formatNumber, shortenAddress, timeAgo } from "@/lib/utils";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { TokenAvatar } from "@/components/ui/TokenAvatar";
 
 interface TokenCardProps {
   token: Token;
@@ -16,10 +17,10 @@ export function TokenCard({ token, className }: TokenCardProps) {
     <article className={cn("bg-section shadow-inset rounded-[16px] p-4 flex flex-col gap-3 hover:ring-1 hover:ring-orange/40 transition-all", className)}>
       {/* Header : avatar + info + socials. Le bloc texte fait pile la hauteur de l'avatar. */}
       <header className="flex gap-3">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <TokenAvatar
           src={token.imageUrl}
           alt={token.ticker}
+          fallbackSeed={`${token.id}-${token.ticker}`}
           className="h-14 w-14 rounded-[10px] object-cover shrink-0 bg-[#0D0D14]"
         />
 

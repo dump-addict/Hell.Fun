@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Globe, Pencil, Send } from "lucide-react";
+import { Copy, Globe, Pencil, Send, Share2 } from "lucide-react";
 import { useState } from "react";
 import { flamePlaceholder } from "@/lib/placeholder";
 import { shortenAddress } from "@/lib/utils";
@@ -42,6 +42,13 @@ export function ProfileHeader({ username, address, bio, socials, joinedAt }: Pro
           <Globe className="h-4 w-4" strokeWidth={2} />
         </SocialBtn>
       )}
+      <button
+        type="button"
+        aria-label="Share profile"
+        className="h-10 w-10 flex items-center justify-center rounded-[10px] bg-[#0D0D14] shadow-inset text-white hover:text-orange transition-colors"
+      >
+        <Share2 className="h-4 w-4" strokeWidth={2} />
+      </button>
       <button
         type="button"
         className="h-10 px-4 inline-flex items-center gap-2 rounded-[10px] bg-orange shadow-glow text-white font-bold text-[13px] hover:brightness-110 active:scale-[0.99] transition-all"

@@ -1,6 +1,7 @@
 import { Globe, Send } from "lucide-react";
 import type { Token } from "@/lib/types";
 import { formatNumber, shortenAddress, timeAgo } from "@/lib/utils";
+import { TokenAvatar } from "@/components/ui/TokenAvatar";
 
 interface TokenTableProps {
   tokens: Token[];
@@ -9,7 +10,8 @@ interface TokenTableProps {
 // CSS Grid garantit que les labels du header et les valeurs des rows sont
 // PILE alignés sur les mêmes colonnes.
 // Ratios rééquilibrés — Bonding rétréci pour être proche des autres colonnes.
-const GRID_COLS = "180fr 110fr 170fr 100fr 80fr 90fr 100fr 110fr 100fr 90fr 120fr 100fr";
+// Les 3 dernières colonnes (5M, 1H, 24H) ont le même fr pour un spacing visuel uniforme.
+const GRID_COLS = "180fr 110fr 170fr 100fr 80fr 90fr 100fr 110fr 100fr 100fr 100fr 100fr";
 
 const HEADERS = [
   "Token",
@@ -59,10 +61,10 @@ function Row({ token }: { token: Token }) {
     >
       {/* Token (avatar + ticker + name) */}
       <div className="flex items-center gap-3 min-w-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <TokenAvatar
           src={token.imageUrl}
           alt={token.ticker}
+          fallbackSeed={`${token.id}-${token.ticker}`}
           className="h-10 w-10 rounded-[8px] object-cover shrink-0 bg-[#0D0D14]"
         />
         <div className="min-w-0 flex flex-col gap-1.5">

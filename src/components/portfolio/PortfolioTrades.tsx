@@ -23,10 +23,10 @@ const MOCK_TRADES: UserTrade[] = [
 export function PortfolioTrades() {
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr] items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider">
+      <div className="grid grid-cols-[1fr_2fr_1fr_1fr] gap-2 xl:grid-cols-[1fr_2fr_1fr_1fr_1fr] xl:gap-0 items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider whitespace-nowrap">
         <div>Type</div>
         <div>Token</div>
-        <div className="text-center">Amount</div>
+        <div className="hidden xl:block text-center">Amount</div>
         <div className="text-center">LIT</div>
         <div className="text-center">Time</div>
       </div>
@@ -34,7 +34,7 @@ export function PortfolioTrades() {
         {MOCK_TRADES.map((tx) => (
           <div
             key={tx.id}
-            className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr] items-center px-4 h-14 text-xs text-white"
+            className="grid grid-cols-[1fr_2fr_1fr_1fr] gap-2 xl:grid-cols-[1fr_2fr_1fr_1fr_1fr] xl:gap-0 items-center px-4 h-14 text-xs text-white"
           >
             <div>
               <span
@@ -56,7 +56,7 @@ export function PortfolioTrades() {
               />
               <span className="font-bold text-orange uppercase">{tx.ticker}</span>
             </div>
-            <div className="text-center font-bold">
+            <div className="hidden xl:block text-center font-bold">
               {tx.tokenAmount.toLocaleString("en-US")}
             </div>
             <div className="text-center font-bold">{tx.litAmount.toFixed(2)}</div>

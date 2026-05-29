@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { Leader } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 import { IconButton } from "@/components/ui/IconButton";
+import { TokenAvatar } from "@/components/ui/TokenAvatar";
 
 interface LeadersCarouselProps {
   leaders: Leader[];
@@ -74,10 +75,11 @@ function LeaderCard({ leader }: { leader: Leader }) {
   return (
     <div className="relative shrink-0 basis-[90%] sm:basis-[60%] md:basis-[45%] lg:basis-[31%] pl-[15px]">
       <div className="relative aspect-[16/9] sm:aspect-[7/3] rounded-[16px] overflow-hidden bg-section">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <TokenAvatar
         src={leader.heroImageUrl}
         alt={leader.name}
+        fallbackSeed={`${leader.id}-${leader.name}`}
+        wide
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />

@@ -20,11 +20,11 @@ function calcPnl(h: Holding) {
 export function PortfolioHoldings({ holdings }: { holdings: Holding[] }) {
   return (
     <div className="flex flex-col">
-      {/* Header */}
-      <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider">
+      {/* Header — mobile : 3 cols (Token/Value/P&L), desktop : 5 cols complets */}
+      <div className="grid grid-cols-[2fr_1fr_1fr] gap-3 xl:grid-cols-[2fr_1fr_1fr_1fr_1fr] xl:gap-0 items-center px-4 h-10 text-xs font-bold text-muted uppercase tracking-wider whitespace-nowrap">
         <div>Token</div>
-        <div className="text-center">Amount</div>
-        <div className="text-center">Avg Entry</div>
+        <div className="hidden xl:block text-center">Amount</div>
+        <div className="hidden xl:block text-center">Avg Entry</div>
         <div className="text-center">Value</div>
         <div className="text-center">P&L</div>
       </div>
@@ -37,7 +37,7 @@ export function PortfolioHoldings({ holdings }: { holdings: Holding[] }) {
             <Link
               key={h.token.id}
               href={`/token/${h.token.id}`}
-              className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors"
+              className="grid grid-cols-[2fr_1fr_1fr] gap-3 xl:grid-cols-[2fr_1fr_1fr_1fr_1fr] xl:gap-0 items-center px-4 h-16 text-xs hover:bg-[#1A1A22] transition-colors"
             >
               <div className="flex items-center gap-3 min-w-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -55,10 +55,10 @@ export function PortfolioHoldings({ holdings }: { holdings: Holding[] }) {
                   </span>
                 </div>
               </div>
-              <div className="text-center text-white font-bold">
+              <div className="hidden xl:block text-center text-white font-bold">
                 {h.amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}
               </div>
-              <div className="text-center text-white font-bold">${h.avgEntry.toFixed(8)}</div>
+              <div className="hidden xl:block text-center text-white font-bold">${h.avgEntry.toFixed(8)}</div>
               <div className="text-center text-white font-bold">
                 {formatNumber(currentValue, { compact: true })}
               </div>
